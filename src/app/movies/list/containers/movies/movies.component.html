@@ -1,0 +1,7 @@
+<!-- <app-movies-preview-list
+  [moviesList]="moviesList$ | async"
+  [errors$]="errors$ | async"
+  [filter]="filter$ | async"
+  (searchEvent)="search($event)">
+</app-movies-preview-list> -->
+{{moviesList$ | async | json}}
