@@ -8,17 +8,26 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class MoviesService {
   API_KEY = envs.themoviedbApiKey;
-  API_URL = `https://api.themoviedb.org/3/search/movie?api_key=${this.API_KEY}&`;
+  API_URL = `https://api.themoviedb.org/3/`;
   constructor(private http: HttpClient) {}
 
   loadMovies(filter): Observable<MoviesResponse> {
     console.log('filter', filter);
-    return this.http.get(this.API_URL, {
+    return this.http.get(`${this.API_URL}search/movie?api_key=${this.API_KEY}&`, {
       observe: 'body',
       responseType: 'json',
       params: this._setFilters(filter)
     }).pipe(
       map((res: MoviesResponse) => res)
+    );
+  }
+
+  loadMovie(id): Observable<Movie> {
+    return this.http.get(`${this.API_URL}movie/${id}?api_key=${this.API_KEY}`, {
+      observe: 'body',
+      responseType: 'json'
+    }).pipe(
+      map((res: Movie) => res)
     );
   }
 

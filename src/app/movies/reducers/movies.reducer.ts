@@ -58,6 +58,23 @@ export function reducer(
       };
     }
 
+    case MoviesActions.LOAD_MOVIE: {
+      return {
+        ...state,
+        selectedMovieId: null,
+        selectedMovie: null,
+        errors: null
+      };
+    }
+
+    case MoviesActions.LOAD_MOVIE_SUCCESS: {
+      return {
+        ...state,
+        selectedMovie: action.payload,
+        selectedMovieId: action.payload.id
+      };
+    }
+
     case MoviesActions.ACTION_FAIL: {
       return {
         ...state,
@@ -74,4 +91,6 @@ export function reducer(
 export const getSelectedMovieId = (state: State) => state.selectedMovieId;
 export const getSelectedMovie = (state: State) => state.selectedMovie;
 export const getTotalResults = (state: State) => state.total_results;
+export const getTotalPages = (state: State) => state.total_pages;
+export const getFilterState = (state: State) => state.filters;
 export const getErrors = (state: State) => state.errors;

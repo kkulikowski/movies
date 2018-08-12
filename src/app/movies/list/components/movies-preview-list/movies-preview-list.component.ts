@@ -20,6 +20,7 @@ export class MoviesPreviewListComponent {
   }
 
   onSubmit() {
+    if (this.searchForm.invalid) return;
     this._searchHandler();
   }
 

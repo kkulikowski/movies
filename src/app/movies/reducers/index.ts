@@ -37,3 +37,23 @@ export const getSelectedMovie = createSelector(
   getSelectedMovieState,
   fromMovies.getSelectedMovie
 );
+
+export const getErrors = createSelector(
+  getMoviesEntitiesState,
+  fromMovies.getErrors
+);
+
+export const getFilterState = createSelector(
+  getMoviesEntitiesState,
+  fromMovies.getErrors
+);
+
+export const getTotalPages = createSelector(
+  getMoviesEntitiesState,
+  fromMovies.getTotalPages
+);
+
+export const getTotalResults = createSelector(
+  getMoviesEntitiesState,
+  fromMovies.getTotalResults
+);

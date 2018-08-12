@@ -15,22 +15,21 @@ import { Movie } from '../../../models/movie.model';
   styleUrls: ['movies.component.scss'],
 })
 export class MoviesPageComponent {
-  filter$: Observable<any>;
+  filter$: Observable<MovieFiltersState>;
   errors$: Observable<any>;
   moviesList$: Observable<Movie[]>;
-  filterState$: Observable<any>;
   totalPages$: Observable<number>;
-  currentPage$: Observable<number>;
-  totalItems$: Observable<number>;
+  totalResults$: Observable<number>;
 
   constructor(
       private store: Store<fromMovies.State>,
       private router: Router,
       private route: ActivatedRoute) {
-    this.moviesList$ = store.select(fromMovies.selectAll);
-    // this.errors$ = this.store.select(fromMovies.getErrors);
-    // this.filter$ = this.store.select(fromMovies.getFilterState);
-    // this.totalItems$ = this.store.select(fromMovies.getTotalItems);
+        this.filter$ = this.store.select(fromMovies.getFilterState);
+        this.errors$ = this.store.select(fromMovies.getErrors);
+        this.moviesList$ = store.select(fromMovies.selectAll);
+        this.totalPages$ = this.store.select(fromMovies.getTotalPages);
+        this.totalResults$ = this.store.select(fromMovies.getTotalResults);
   }
 
   searchHandler($event: MovieFiltersState) {

@@ -22,6 +22,16 @@ export class MoviesEffects {
       catchError(error => throwError(new moviesActions.ActionFail(error)))
     );
 
+  @Effect()
+  loadMovie: Observable<Action> = this.actions$
+    .ofType<moviesActions.LoadMovie>(moviesActions.LOAD_MOVIE)
+    .pipe(
+      map(action => action.payload),
+      switchMap(payload => this.moviesService.loadMovie(payload)),
+      map((response: Movie) => new moviesActions.LoadMovieSuccess(response)),
+      catchError(error => throwError(new moviesActions.ActionFail(error)))
+    );
+
   constructor(private actions$: Actions, private moviesService: MoviesService, private router: Router,
     private route: ActivatedRoute) {}
 }
