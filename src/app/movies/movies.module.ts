@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { MoviesEffects } from './effects/movies.effects';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const ROUTES = [
   {
@@ -33,6 +34,8 @@ const ROUTES = [
     CommonModule,
     CustomMaterialModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [MoviesService],
 })

@@ -1,12 +1,15 @@
 <div fxLayout="column">
-  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
-    <mat-form-field>
-      <input type="text" matInput placeholder="Movie or Series Title">
-    </mat-form-field>
-    <div>
-      <button mat-raised-button color="accent"><mat-icon>search</mat-icon> Search</button>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <mat-form-field>
+        <input type="text" matInput placeholder="Movie or Series Title" formControlName="query" required>
+        <mat-error>Movie title is required</mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="accent"><mat-icon>search</mat-icon> Search</button>
+      </div>
     </div>
-  </div>
+  </form>
 
   <mat-nav-list>
     <a mat-list-item *ngFor="let movie of moviesList" fxLayout="row">

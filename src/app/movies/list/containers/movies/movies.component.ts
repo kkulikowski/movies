@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { MovieFiltersState } from './../../../models/movie.model';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromMovies from '../../../reducers';
@@ -13,7 +14,7 @@ import { Movie } from '../../../models/movie.model';
   templateUrl: 'movies.component.html',
   styleUrls: ['movies.component.scss'],
 })
-export class MoviesPageComponent implements OnInit {
+export class MoviesPageComponent {
   filter$: Observable<any>;
   errors$: Observable<any>;
   moviesList$: Observable<Movie[]>;
@@ -32,15 +33,7 @@ export class MoviesPageComponent implements OnInit {
     // this.totalItems$ = this.store.select(fromMovies.getTotalItems);
   }
 
-
-  ngOnInit(): void {
-    this.store.dispatch(new moviesActions.LoadMovies());
+  searchHandler($event: MovieFiltersState) {
+    this.store.dispatch(new moviesActions.LoadMovies($event));
   }
-
-  // search(value: {entry: User, filter: RestFilter}) {
-  //   this.store.dispatch(new userActions.UserClearErrors());
-  //   this.store.dispatch(new userActions.LoadUsers(
-  //     {entry: value && value.entry ? value.entry : null,
-  //       filter: value && value.filter ? value.filter : null}));
-  // }
 }

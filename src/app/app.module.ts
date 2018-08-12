@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { routes } from './routes';
 import { reducers, metaReducers } from './reducers';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25
     }) : [],
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
