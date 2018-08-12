@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class MoviesService {
-  API_KEY = envs.omdbApiKey;
-  API_URL = `http://www.omdbapi.com/?apikey=${this.API_KEY}&`;
+  API_KEY = envs.themoviedbApiKey;
+  API_URL = `https://api.themoviedb.org/3/search/movie?api_key=${this.API_KEY}&`;
   constructor(private http: HttpClient) {}
 
   loadMovies(filter): Observable<MoviesResponse> {
@@ -25,7 +25,9 @@ export class MoviesService {
 
   private _setFilters(filter: any) {
     let params = new HttpParams();
-    params = params.append('s', 'matrix');
+    params = params.append('query', 'matrix');
+    // because we don't want to see it all here.
+    params = params.append('adult', 'false');
     //tODO dunno if entry and filters will be needed, ill see when api will start working
     // if (filters.filter) {
     //   Object.getOwnPropertyNames(filters.filter).forEach((key, idx, array) => {

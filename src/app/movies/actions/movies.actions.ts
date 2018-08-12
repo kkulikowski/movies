@@ -1,7 +1,6 @@
-import { MoviesResponse } from './../models/movie.model';
+import { MoviesResponse, MovieFiltersState } from './../models/movie.model';
 import { Action } from '@ngrx/store';
 import { Movie } from '../models/movie.model';
-import { RestFilter } from '../../core/models/rest-filter.model';
 
 export const LOAD_MOVIES = '[Movies] Load Movies';
 export const LOAD_MOVIES_SUCCESS = '[Movies] Load Movies Success';
@@ -11,7 +10,7 @@ export const ACTION_FAIL = '[Movies] Action Fail';
 export class LoadMovies implements Action {
   readonly type = LOAD_MOVIES;
 
-  constructor(public payload: { entry: Movie, filter: RestFilter} = null) {}
+  constructor(public payload: MovieFiltersState = null) {}
 }
 
 export class LoadMoviesSuccess implements Action {

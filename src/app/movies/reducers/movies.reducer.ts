@@ -8,29 +8,28 @@ export interface State extends EntityState<Movie> {
   selectedMovie?: Movie | null;
   ids: number[];
   entities: Dictionary<Movie>;
-  // filters?: MovieFiltersState;
+  filters?: MovieFiltersState;
   errors?: any;
-  Response: string;
-  totalResults: string;
+  total_results: number;
+  total_pages: number;
+  page: number;
 }
 
 export const adapter: EntityAdapter<Movie> = createEntityAdapter<Movie>({
-  selectId: (movie: Movie) => movie.imdbID
+  // selectId: (movie: Movie) => movie.imdbID
 });
 export const initialState: State = adapter.getInitialState({
   selectedMovieId: null,
   selectedMovie: null,
   entities: [],
   ids: [],
-  Response: 'False',
-  totalResults: '0',
-  // filters: {
-  //   size: 10,
-  //   page: 0,
-  //   filter: null,
-  //   totalResults: 0,
-  //   Response: 'false',
-  // },
+  total_results: 0,
+  total_pages: 0,
+  page: 0,
+  filters: {
+    page: 0,
+    query: ''
+  },
   errors: [],
 });
 
@@ -44,16 +43,17 @@ export function reducer(
         ...state,
         selectedMovie: null,
         selectedMovieId: null,
+        filters: action.payload,
         errors: null
       };
     }
 
     case MoviesActions.LOAD_MOVIES_SUCCESS: {
-      // TODO set all filters and other things based on ombd api response
       return {
-        ...adapter.addMany(action.payload.Search, state),
-        totalResults: action.payload.totalResults,
-        Response: action.payload.Response,
+        ...adapter.addMany(action.payload.results, state),
+        total_results: action.payload.total_results,
+        total_pages: action.payload.total_pages,
+        page: action.payload.page,
         errors: null,
       };
     }
@@ -73,5 +73,5 @@ export function reducer(
 
 export const getSelectedMovieId = (state: State) => state.selectedMovieId;
 export const getSelectedMovie = (state: State) => state.selectedMovie;
-export const getTotalResults = (state: State) => state.totalResults;
+export const getTotalResults = (state: State) => state.total_results;
 export const getErrors = (state: State) => state.errors;
