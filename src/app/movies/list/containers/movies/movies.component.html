@@ -1,4 +1,6 @@
 <app-movies-preview-list
   [moviesList]="moviesList$ | async"
+  [filter]="filter$ | async"
+  [totalResults]="totalResults$ | async"
   (search)="searchHandler($event)">
 </app-movies-preview-list>

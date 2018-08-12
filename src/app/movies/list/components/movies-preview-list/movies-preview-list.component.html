@@ -11,9 +11,16 @@
     </div>
   </form>
 
+  <h3>Movies ({{totalResults}})</h3>
   <mat-nav-list>
     <a mat-list-item *ngFor="let movie of moviesList" fxLayout="row" [routerLink]="['/movies', movie.id]">
-      {{movie | json}}
+      <app-movie-img [source]="movie?.poster_path" [imageWidth]="posterWidth"></app-movie-img>
+      <div fxFlex fxLayout="column">
+        <h4>{{movie?.title}}</h4>
+        <div>
+          {{movie.overview}}
+        </div>
+      </div>
     </a>
   </mat-nav-list>
 </div>

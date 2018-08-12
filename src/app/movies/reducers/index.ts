@@ -45,7 +45,7 @@ export const getErrors = createSelector(
 
 export const getFilterState = createSelector(
   getMoviesEntitiesState,
-  fromMovies.getErrors
+  fromMovies.getFilterState
 );
 
 export const getTotalPages = createSelector(

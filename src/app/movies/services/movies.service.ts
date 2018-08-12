@@ -12,7 +12,6 @@ export class MoviesService {
   constructor(private http: HttpClient) {}
 
   loadMovies(filter): Observable<MoviesResponse> {
-    console.log('filter', filter);
     return this.http.get(`${this.API_URL}search/movie?api_key=${this.API_KEY}&`, {
       observe: 'body',
       responseType: 'json',

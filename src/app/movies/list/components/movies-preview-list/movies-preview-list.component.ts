@@ -1,5 +1,5 @@
 import { MovieFiltersState } from './../../../models/movie.model';
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { Movie } from '../../../models/movie.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -9,14 +9,27 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: 'movies-preview-list.component.html',
   styleUrls: ['movies-preview-list.component.scss'],
 })
-export class MoviesPreviewListComponent {
+export class MoviesPreviewListComponent implements OnChanges {
   @Input() moviesList: Movie[];
+  @Input() filter: MovieFiltersState;
+  @Input() totalResults: number;
   @Output() search: EventEmitter<MovieFiltersState> = new EventEmitter;
 
   searchForm: FormGroup;
 
+  backdropWidth = '200'; // in pixels
+  posterWidth = '200'; // in pixels
+
   constructor() {
     this.searchForm = this.createForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.filter) {
+      this.searchForm.patchValue({
+        query: this.filter.query
+      });
+    }
   }
 
   onSubmit() {

@@ -1,3 +1,4 @@
+import { MovieImageComponent } from './list/components/movie-img/movie-img.component';
 import { MovieDetailsComponent } from './list/components/movie-details/movie-details.component';
 import { SelectedMoviePageComponent } from './list/containers/movie/selected-movie-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -35,6 +36,7 @@ const ROUTES = [
     ViewMoviePageComponent,
     SelectedMoviePageComponent,
     MovieDetailsComponent,
+    MovieImageComponent,
   ],
   imports: [
     RouterModule.forChild(ROUTES),

@@ -13,6 +13,7 @@ export interface Movie {
   vote_count: number;
   video: boolean;
   vote_average: number;
+  genres?: number[] | Genre[];
 }
 
 export interface MovieFiltersState {
@@ -25,4 +26,9 @@ export interface MoviesResponse {
   total_results: number;
   page?: number;
   total_pages?: number;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
 }
