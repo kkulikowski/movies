@@ -1,9 +1,31 @@
-<div fxFlex fxLayout="column">
+<div class="container" fxLayout="column" fxLayoutGap="15px" *ngIf="movie">
   <div>
-    <img [src]="backdrop">
+    <button mat-raised-button color="accent" (click)="backToMovieList()">
+      <mat-icon>keyboard_backspace</mat-icon> Back to movie list
+    </button>
   </div>
-  <div>
-    <img [src]="poster">
-  </div>
-  {{ movie | json }}
+  <mat-card>
+    <mat-card-header>
+      <div fxLayout="row">
+        <div>
+          <img [src]="poster">
+        </div>
+        <div fxLayout="column">
+          <mat-card-title>
+            <strong>{{movie.title}}</strong>({{movie.release_date}})<span *ngFor="let country of movie.production_countries">, {{country.name}}</span>
+          </mat-card-title>
+          <mat-card-subtitle>{{movie.tagline}}</mat-card-subtitle>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{movie.overview}}
+      </p>
+    </mat-card-content>
+    <div>
+      <img [src]="backdrop">
+    </div>
+    {{ movie | json }}
+  </mat-card>
 </div>

@@ -40,7 +40,7 @@ export function reducer(
   switch (action.type) {
     case MoviesActions.LOAD_MOVIES: {
       return {
-        ...state,
+        ...adapter.removeAll(state),
         selectedMovie: null,
         selectedMovieId: null,
         filters: action.payload,

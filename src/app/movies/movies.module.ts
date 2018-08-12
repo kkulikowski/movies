@@ -9,7 +9,7 @@ import { MoviesService } from './services/movies.service';
 import { MoviesPageComponent } from './list/containers/movies/movies.component';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 import { reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
